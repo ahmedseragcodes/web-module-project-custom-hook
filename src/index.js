@@ -1,15 +1,46 @@
+//TECH IMPORTS 
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
-
+//COMPONENT IMPORTS
 import Charts from "./components/Charts";
 import Navbar from "./components/Navbar";
-
+//STYLING IMPORTS
 import "./styles.scss";
+//BEGIN CODE
+
+
+//START localStorage Hook
+
+const useLocalStorage = (key, initialValue) => {
+
+  const [storedValue, setStoredValue]=useState(()=>{
+    return localStorage.getItem(key) ? JSON.parse(localStorage.getItem(key)) : localStorage.setItem(key, JSON.stringify(initialValue))
+  })
+
+  const setValue = (value) => {
+    
+    setStoredValue(value);
+    localStorage.setItem(key, JSON.stringify(value));
+
+  }
+  
+  return [storedValue, setValue];
+
+}
+
+//END localStorage Hook
+
+//START DARK MODE HOOK
+
+
+//END DARK MODE HOOK
 
 const App = () => {
   const [coinData, setCoinData] = useState([]);
   const [darkMode, setDarkMode] = useState(false);
+
+
 
   useEffect(() => {
     axios
