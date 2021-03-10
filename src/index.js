@@ -33,12 +33,19 @@ const useLocalStorage = (key, initialValue) => {
 
 //START DARK MODE HOOK
 
+const useDarkMode = () => {
+
+  const [siteStyle, setSiteStyle] = useLocalStorage("siteStyle", false)
+
+  return [siteStyle, setSiteStyle];
+}
+
 
 //END DARK MODE HOOK
 
 const App = () => {
   const [coinData, setCoinData] = useState([]);
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useDarkMode("siteStyle", false);
 
 
 
